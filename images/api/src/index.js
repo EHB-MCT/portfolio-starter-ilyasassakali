@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 
 const userRoutes = require("../routes/user");
+const gameRoutes = require("../routes/game");
 app.use(express.json());
 
 /**
@@ -14,6 +15,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/users", userRoutes);
+app.use("/games", gameRoutes);
 
 app.listen(3000, (err) => {
   if (!err) {
