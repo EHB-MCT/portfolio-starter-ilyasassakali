@@ -1,11 +1,8 @@
 const express = require("express");
-const knex = require("knex");
-const knexfile = require("../knexfile");
 const app = express();
-const db = knex(knexfile.development);
-app.use(express.json());
 
-const User = require("../classes/User");
+const userRoutes = require("../routes/user");
+app.use(express.json());
 
 /**
  * Root endpoint for a simple hello world message.
@@ -16,23 +13,7 @@ app.get("/", (req, res) => {
   res.send({ message: "Hello, world!" });
 });
 
-/**
- * Endpoint to retrieve the list of users.
- *
- * @returns {object} - List of users.
- */
-app.get("/users", async (req, res) => {
-  try {
-    const usersData = await db("users").select("*");
-    const users = usersData.map(
-      (user) => new User(user.username, user.email, user.password)
-    );
-    res.send(users);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send({ error: "Internal Server Error" });
-  }
-});
+app.use("/users", userRoutes);
 
 app.listen(3000, (err) => {
   if (!err) {
