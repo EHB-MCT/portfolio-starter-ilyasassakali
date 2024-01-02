@@ -8,7 +8,17 @@ const Game = require("../classes/Game");
 /**
  * Endpoint to save a game for a specific user.
  *
+ * @param {string} userId - The ID of the user for whom the game is being saved.
+ * @param {object} req.body - The game information to be saved.
+ * @param {string} req.body.name - The name of the game.
+ * @param {string} req.body.image - The image URL of the game.
+ * @param {string} req.body.description - The description of the game.
+ * @param {string} req.body.platform - The platform on which the game is played.
+ * @param {number} req.body.rating - The rating assigned to the game.
  * @returns {object} - Saved game information.
+ * @throws {object} - Returns a 400 Bad Request if any of the required fields are missing.
+ * @throws {object} - Returns a 404 Not Found if the user with the provided ID is not found.
+ * @throws {object} - Returns a 500 Internal Server Error if an error occurs during the game save process.
  */
 router.post("/:userId", async (req, res) => {
   try {
@@ -71,7 +81,12 @@ router.post("/:userId", async (req, res) => {
 /**
  * Endpoint to delete a game saved by a specific user.
  *
+ * @param {string} userId - The ID of the user who saved the game.
+ * @param {string} gameId - The ID of the game to be deleted.
  * @returns {object} - Message indicating success or failure.
+ * @throws {object} - Returns a 404 Not Found if the user with the provided ID or the game with the provided ID is not found.
+ * @throws {object} - Returns a 403 Forbidden if the game does not belong to the user.
+ * @throws {object} - Returns a 500 Internal Server Error if an error occurs during the game deletion process.
  */
 router.delete("/:userId/:gameId", async (req, res) => {
   try {
@@ -104,9 +119,12 @@ router.delete("/:userId/:gameId", async (req, res) => {
 });
 
 /**
- * Endpoint to get all games saved by a specific user.
+ * Endpoint to retrieve all games saved by a specific user.
  *
+ * @param {string} userId - The ID of the user for whom to retrieve the games.
  * @returns {object} - List of games saved by the user.
+ * @throws {object} - Returns a 404 Not Found if the user with the provided ID is not found.
+ * @throws {object} - Returns a 500 Internal Server Error if an error occurs during the retrieval process.
  */
 router.get("/:userId", async (req, res) => {
   try {
@@ -129,7 +147,13 @@ router.get("/:userId", async (req, res) => {
 /**
  * Endpoint to update a saved game by a specific user.
  *
+ * @param {string} userId - The ID of the user who owns the game to be updated.
+ * @param {string} gameId - The ID of the game to be updated.
+ * @param {object} req.body - The updated information for the game.
  * @returns {object} - Updated game information.
+ * @throws {object} - Returns a 404 Not Found if the user or game with the provided IDs is not found.
+ * @throws {object} - Returns a 403 Forbidden if the game does not belong to the specified user.
+ * @throws {object} - Returns a 500 Internal Server Error if an error occurs during the update process.
  */
 router.put("/:userId/:gameId", async (req, res) => {
   try {

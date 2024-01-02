@@ -12,6 +12,7 @@ const SALT_ROUNDS = 10;
  * Endpoint to retrieve the list of users.
  *
  * @returns {object} - List of users.
+ * @throws {object} - Returns a 500 Internal Server Error if an error occurs during the process.
  */
 router.get("/", async (req, res) => {
   try {
@@ -31,7 +32,14 @@ router.get("/", async (req, res) => {
 /**
  * Endpoint to create a new user.
  *
+ * @param {object} req.body - The request body containing user information.
+ *   - {string} username - The username of the new user.
+ *   - {string} email - The email of the new user.
+ *   - {string} password - The password of the new user.
  * @returns {object} - Created user.
+ * @throws {object} - Returns a 400 Bad Request if required fields are missing.
+ * @throws {object} - Returns a 409 Conflict if a user with the provided email already exists.
+ * @throws {object} - Returns a 500 Internal Server Error if an error occurs during the process.
  */
 router.post("/", async (req, res) => {
   try {
@@ -76,8 +84,10 @@ router.post("/", async (req, res) => {
 /**
  * Endpoint to delete a user by ID.
  *
- * @param {number} id - User ID.
+ * @param {number} req.params.id - The ID of the user to be deleted.
  * @returns {object} - Message indicating success or failure.
+ * @throws {object} - Returns a 404 Not Found if the user with the provided ID is not found.
+ * @throws {object} - Returns a 500 Internal Server Error if an error occurs during the process.
  */
 router.delete("/:id", async (req, res) => {
   try {
@@ -100,9 +110,12 @@ router.delete("/:id", async (req, res) => {
 /**
  * Endpoint to update a user by ID.
  *
- * @param {number} id - User ID.
- * @param {object} req.body - Updated user information.
- * @returns {object} - Updated user.
+ * @param {number} req.params.id - The ID of the user to be updated.
+ * @param {object} req.body - The updated user information.
+ * @returns {object} - The updated user.
+ * @throws {object} - Returns a 404 Not Found if the user with the provided ID is not found.
+ * @throws {object} - Returns a 409 Conflict if the specified email is already in use by another user.
+ * @throws {object} - Returns a 500 Internal Server Error if an error occurs during the process.
  */
 router.put("/:id", async (req, res) => {
   try {
@@ -150,6 +163,10 @@ router.put("/:id", async (req, res) => {
  * Endpoint to log in a user.
  *
  * @returns {object} - User information if login is successful.
+ * @throws {object} - Returns a 400 Bad Request if the required fields (email or password) are missing.
+ * @throws {object} - Returns a 404 Not Found if the user with the provided email is not found.
+ * @throws {object} - Returns a 401 Unauthorized if the provided password does not match the stored hashed password.
+ * @throws {object} - Returns a 500 Internal Server Error if an error occurs during the login process.
  */
 router.post("/login", async (req, res) => {
   try {
