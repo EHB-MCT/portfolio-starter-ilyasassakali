@@ -1,0 +1,10 @@
+body {
+    margin: 0;
+}
+  
+.App {
+    background-color: rgb(28, 34, 41);
+    min-height: 100vh; 
+    display: flex;
+    flex-direction: column;
+}
