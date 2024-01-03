@@ -2,11 +2,19 @@ import React, { useEffect, useState } from "react";
 import "../home/Home.css";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import { useNavigate } from "react-router-dom";
+import Navbar from "../navbar/Navbar";
 
 function Home() {
   const [games, setGames] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
+    const user = JSON.parse(sessionStorage.getItem("user"));
+    if (!user) {
+      navigate("/login");
+    }
+
     const fetchData = async () => {
       try {
         const response = await fetch("http://localhost/games/1");
@@ -18,10 +26,11 @@ function Home() {
     };
 
     fetchData();
-  }, []);
+  }, [navigate]);
 
   return (
     <div className="home">
+      <Navbar />
       <h2>Saved Games</h2>
 
       <div className="card-container">

@@ -1,0 +1,22 @@
+.register {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 330px;
+  
+}
+  
+.registerform{
+    margin-bottom: 20px;
+}
+  
+.register h2{
+    margin: 0;
+    margin-bottom: 30px;
+}
+    
+.label ,p{
+    color: white;
+}
