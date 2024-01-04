@@ -3,7 +3,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 
-function BasicExample() {
+function Navigation() {
   return (
     <Navbar
       bg="dark"
@@ -12,7 +12,7 @@ function BasicExample() {
       className="bg-body-tertiary"
     >
       <Container>
-        <Navbar.Brand>Logo</Navbar.Brand>
+        <Navbar.Brand>SRGames</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
@@ -29,4 +29,4 @@ function BasicExample() {
   );
 }
 
-export default BasicExample;
+export default Navigation;
