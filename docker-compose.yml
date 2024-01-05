@@ -26,4 +26,12 @@ services:
       - ./_backup:/var/lib/postgresql/data
 
 
+  frontend:
+    build: ./images/frontend
+    ports:
+      - 3000:3000
+    volumes:
+      - ./images/frontend:/usr/app/frontend
+
+
 
