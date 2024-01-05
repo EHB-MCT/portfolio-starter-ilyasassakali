@@ -1,20 +1,30 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
+
+const userRoutes = require("../routes/user");
+const gameRoutes = require("../routes/game");
+
+app.use(express.json());
+app.use(cors());
 
 /**
- * GET endpoint, providing hello world
+ * Root endpoint for a simple hello world message.
  *
- * @param
- * @returns
+ * @returns {object} - Hello world message.
  */
-
 app.get("/", (req, res) => {
-  res.send({ message: "hi world" });
+  res.send({ message: "Hello, world!" });
 });
 
+// Connect user and game routes
+app.use("/users", userRoutes);
+app.use("/games", gameRoutes);
+
+// Start the server on port 3000
 app.listen(3000, (err) => {
   if (!err) {
-    console.log("running on port " + 3000);
+    console.log("running on port" + 3000);
   } else {
     console.log(err);
   }
