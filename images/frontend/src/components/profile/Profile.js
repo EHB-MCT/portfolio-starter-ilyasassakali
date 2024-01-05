@@ -5,6 +5,9 @@ import Navbar from "../navbar/Navbar";
 import { useNavigate } from "react-router-dom";
 import "../profile/Profile.css";
 import Alert from "react-bootstrap/Alert";
+// eslint-disable-next-line
+import * as THREE from "three";
+import UserIcon from "../userIcon/UserIcon";
 
 function Profile() {
   const [username, setUsername] = useState("");
@@ -94,8 +97,10 @@ function Profile() {
 
   return (
     <div className="profile">
+      <UserIcon />
       <Navbar />
       <h2>Profile</h2>
+
       <Form className="innerProfile" onSubmit={handleUpdateProfile}>
         <Form.Group className="mb-3" controlId="formBasicUsername">
           <Form.Label className="label">Username</Form.Label>
