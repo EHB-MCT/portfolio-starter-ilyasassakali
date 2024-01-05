@@ -99,7 +99,7 @@ function Home() {
           >
             <Card.Img src={game.image} />
             <Card.Body>
-              <Card.Title>{game.name}</Card.Title>
+              <Card.Title className="titleCard">{game.name}</Card.Title>
               <Card.Text>{game.description}</Card.Text>
               <Card.Text>{`Played on: ${game.platform}`}</Card.Text>
               <Card.Title>{`Rating: ${game.rating}/10`}</Card.Title>
