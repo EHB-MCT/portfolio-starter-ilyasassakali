@@ -24,12 +24,13 @@ services:
     container_name: store
     volumes:
       - ./_backup:/var/lib/postgresql/data
+    restart: always
 
 
   frontend:
     build: ./images/frontend
     ports:
-      - 3000:3000
+      - 30:3000
     volumes:
       - ./images/frontend:/usr/app/frontend
 
