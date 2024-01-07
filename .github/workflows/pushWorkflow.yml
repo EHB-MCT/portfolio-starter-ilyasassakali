@@ -1,26 +1,49 @@
-name: CI/CD Pipeline (Push)
+name: CI/CD Pipeline
 
 on:
-  push:
-    branches:
-      - '*'
+  pull_request:
+    branches: '*'
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      
+uses: actions/checkout@v2
 
-    - name: Set up Docker Compose
-      run: docker-compose -f docker-compose.yml build
+      
+name: build docker containers
+      run: docker-compose build
 
-    - name: Run Lighthouse tests
+      
+name: run docker containers
+      run: docker-compose up -d
+
+      
+name: run npm install
       run: |
-        docker-compose -f docker-compose.yml run api npm run test
+        cd ./images/api && npm ci
 
-    - name: Push images to Docker Hub
-      run: |
-        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-        docker-compose -f docker-compose.yml push
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      
+uses: actions/checkout@v2
+
+      
+name: build
+      run: docker-compose build
+
+      
+name: Login to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+      
+name: publish
+      run: docker-compose push
