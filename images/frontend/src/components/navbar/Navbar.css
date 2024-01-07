@@ -1,0 +1,13 @@
+.nav-link.active {
+    color: #17a2b8; 
+    font-weight: bold; 
+}
+
+.logo{
+    font-weight: 900;
+}
+
+.welcome-message {
+    color: #fff;
+    margin-right: 20px;  
+}
