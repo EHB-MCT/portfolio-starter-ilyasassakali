@@ -3,8 +3,8 @@ const app = require("../src/app");
 
 describe("GET /games/:userId", () => {
   it("should retrieve all games for a specific user", async () => {
-    // Assume there is an existing user with ID 14 in the database
-    const userId = 14;
+    // Assume there is an existing user with ID 2 in the database
+    const userId = 2;
 
     const response = await request(app).get(`/games/${userId}`).expect(200);
 

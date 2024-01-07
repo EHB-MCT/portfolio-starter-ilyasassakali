@@ -78,7 +78,7 @@ describe("PUT /users/:id", () => {
     // Attempt to update the user with an email that is already in use
     const conflictingEmailUserData = {
       username: "conflictinguser",
-      email: "existing@gmail.com", // Using the same email as an existing user of the db
+      email: "user2@example.com", // Using the same email as an existing user of the db
       password: "conflictingpassword",
     };
 
