@@ -3,8 +3,8 @@ const app = require("../src/app");
 
 describe("POST /games/:userId", () => {
   it("should save a new game for a specific user", async () => {
-    // Assume there is an existing user with ID 14 in the database
-    const userId = 14;
+    // Assume there is an existing user with ID 2 in the database
+    const userId = 2;
 
     const gameData = {
       name: "ededede",
@@ -25,7 +25,7 @@ describe("POST /games/:userId", () => {
   });
 
   it("should return a 400 Bad Request if required fields are missing", async () => {
-    const userId = 14;
+    const userId = 2;
 
     const invalidGameData = {
       // Missing required fields

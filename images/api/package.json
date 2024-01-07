@@ -4,7 +4,9 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "start": "knex migrate:latest && nodemon src/index.js && npm run test",
+    "start": "npm run migrate && npm run seed && nodemon src/index.js && npm test",
+    "seed": "npx knex seed:run",
+    "migrate": "knex migrate:rollback && knex migrate:latest",
     "test": "jest --detectOpenHandles --forceExit",
     "test-watch": "jest --detectOpenHandles --watchAll"
   },

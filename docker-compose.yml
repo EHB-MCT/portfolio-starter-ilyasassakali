@@ -4,6 +4,8 @@ services:
 
   api:
     build: ./images/api
+    depends_on:
+      - store
     ports:
       - 80:3000
     volumes:
@@ -34,5 +36,11 @@ services:
     volumes:
       - ./images/frontend:/usr/app/frontend
 
+
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 30
 
 

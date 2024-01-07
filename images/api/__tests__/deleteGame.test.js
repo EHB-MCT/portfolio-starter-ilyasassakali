@@ -3,11 +3,11 @@ const app = require("../src/app");
 
 describe("DELETE /games/:userId/:gameId", () => {
   it("should delete a game for a specific user", async () => {
-    // Assume there is an existing user with ID 14 in the database
-    const userId = 14;
+    // Assume there is an existing user with ID 2 in the database
+    const userId = 2;
 
-    // Assume there is an existing game with ID 1 in the database
-    const gameId = 1;
+    // Assume there is an existing game with ID 4 in the database
+    const gameId = 4;
 
     const response = await request(app)
       .delete(`/games/${userId}/${gameId}`)
@@ -38,11 +38,11 @@ describe("DELETE /games/:userId/:gameId", () => {
   });
 
   it("should return a 403 Forbidden if the game does not belong to the user", async () => {
-    // Assume there is an existing user with ID 14 in the database
-    const userId = 14;
+    // Assume there is an existing user with ID 2 in the database
+    const userId = 2;
 
-    // Assume there is an existing game with ID 70 in the database
-    const gameId = 70;
+    // Assume there is an existing game with ID 1 in the database
+    const gameId = 1;
 
     await request(app).delete(`/games/${userId}/${gameId}`).expect(403);
   });
