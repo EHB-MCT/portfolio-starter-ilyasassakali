@@ -14,6 +14,7 @@ Played Games Saver is a full-stack website designed to streamline your gaming ex
 * `POSTGRES_PASSWORD` - Sets the password for authenticating with the PostgreSQL database server.
 * `POSTGRES_DB` - Determines the database with which applications and services will interact.
 * `POSTGRES_HOST_AUTH_METHOD` - Specifies the authentication method for connecting to the PostgreSQL host.
+* `PG_CONNECTION_STRING` - This environment variable represents the connection string for Knex.js.
 
 ## API Documentation
 
@@ -61,6 +62,10 @@ This endpoint allows you to update a saved game by a specific user.
 ```shell
 PUT /games/:userId/:gameId
 ```
+
+## Run tests
+
+Use the command npm test to run tests after having docker-compose up --build
 
 ## License 
 
