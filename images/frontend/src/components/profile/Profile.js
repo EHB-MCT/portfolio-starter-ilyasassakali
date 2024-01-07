@@ -46,6 +46,7 @@ function Profile() {
 
     if (response.ok) {
       setSuccessMessage("Account deleted successfully");
+      sessionStorage.removeItem("user");
       setTimeout(() => {
         navigate("/login");
       }, 3000);
